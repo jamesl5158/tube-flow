@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "YouTube Comment Flow",
+  "version": "1.1.0",
+  "description": "Flow comments already loaded on YouTube across the video. No API key required.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "YouTube comment controls",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [{
+    "matches": ["https://www.youtube.com/*"],
+    "js": ["settings.js", "comments.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}

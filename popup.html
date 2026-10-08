@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>YouTube comment flow</title>
+    <link rel="stylesheet" href="popup.css">
+    <script src="settings.js" defer></script>
+    <script src="popup.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <p class="eyebrow">YOUTUBE · COMMENT FLOW</p>
+      <h1>YouTube comment flow</h1>
+      <p class="intro">Comments across the video. No API key or extra account needed.</p>
+      <label class="toggle"><span>Show comments</span><input id="enabled" type="checkbox" role="switch"></label>
+      <label for="source">Comment source</label>
+      <select id="source">
+        <option value="page">Real comments loaded on this page</option>
+        <option value="samples">Sample comments (demo)</option>
+      </select>
+      <p id="page-status" role="status" aria-live="polite">Checking this tab…</p>
+      <button id="show-comments" type="button">Go to comments</button>
+      <p class="note">For real comments, scroll down to load YouTube’s comments, then return to the video. Scroll further to load more. Comments repeat and are not tied to video timestamps.</p>
+      <div class="control">
+        <label for="speed">Speed</label><output id="speed-value" for="speed">100 px/s</output>
+        <input id="speed" type="range" min="40" max="240" step="10" value="100">
+      </div>
+      <div class="control">
+        <label for="opacity">Opacity</label><output id="opacity-value" for="opacity">80%</output>
+        <input id="opacity" type="range" min="20" max="100" step="5" value="80">
+      </div>
+      <p class="note">Pauses with the video. Clicks pass through to the player. Settings apply to all open YouTube tabs.</p>
+      <p id="status" role="status" aria-live="polite">Loading settings…</p>
+    </main>
+  </body>
+</html>

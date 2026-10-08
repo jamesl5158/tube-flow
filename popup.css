@@ -1,0 +1,20 @@
+:root { color-scheme: dark; font-family: system-ui, sans-serif; color: #edf2f8; background: #141b26; }
+body { width: 300px; margin: 0; }
+main { padding: 22px; }
+.eyebrow { color: #8ecfc7; font-size: 10px; letter-spacing: 1.7px; font-weight: 700; }
+h1 { font-size: 21px; margin: 12px 0 8px; }
+.intro, .note { color: #aebccc; line-height: 1.5; font-size: 13px; }
+.toggle { display: flex; align-items: center; justify-content: space-between; margin: 22px 0; font-size: 14px; }
+input { accent-color: #80d9c8; cursor: pointer; }
+input[type="checkbox"] { width: 20px; height: 20px; }
+.control { display: grid; grid-template-columns: 1fr auto; gap: 10px; margin: 22px 0; font-size: 14px; }
+output { color: #80d9c8; font-variant-numeric: tabular-nums; font-size: 12px; }
+input[type="range"] { width: 100%; grid-column: 1 / -1; margin: 0; }
+input:focus-visible, select:focus-visible, button:focus-visible { outline: 2px solid #edf2f8; outline-offset: 4px; }
+select, button { background: #223044; color: #edf2f8; border: 1px solid #597188; border-radius: 6px; padding: 9px; width: 100%; margin-top: 8px; }
+select, button, label[for="source"] { font: inherit; font-size: 12px; }
+button { cursor: pointer; }
+button:disabled { opacity: .5; cursor: default; }
+#page-status { color: #aebccc; font-size: 12px; line-height: 1.5; }
+.note { font-size: 12px; border-top: 1px solid #334155; padding-top: 16px; }
+#status { color: #8ecfc7; font-size: 11px; min-height: 16px; margin-bottom: 0; }
