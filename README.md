@@ -40,24 +40,6 @@ The extension requests only the `storage` API permission. Content scripts are li
 
 Share the ZIP or the complete source folder. Each recipient extracts it and follows the installation steps above. Do not include personal Chrome profile data; it is not needed. Publishing to the Chrome Web Store is a separate future distribution step.
 
-## Manual test checklist
-
-- [ ] Install from a fresh extraction on another computer or Chrome profile. No API key, developer-specific path, or additional account is requested.
-- [ ] Refresh a watch page, choose real comments, and open the popup. Before comments load, it explains how to load them; it does not show samples.
-- [ ] Click **Go to comments**, wait for comment text to appear, and return to the video. The popup shows a nonzero count; actual page comments move right to left in three lanes.
-- [ ] Scroll farther into the comments. The available pool updates, bounded at 200 rendered comments. Long comments are shortened.
-- [ ] Pause using the player button and keyboard. Comments freeze and resume from their frozen positions without a large jump.
-- [ ] Scrub/buffer the video and switch away from the tab. Flow stops while waiting/hidden and resumes without a catch-up burst. At the video end, it stops.
-- [ ] Switch on/off and test the speed/opacity extremes. Existing comments respond; comments within a lane stay spaced.
-- [ ] Close/reopen the popup and refresh. Settings persist. Changes also apply to another open YouTube tab.
-- [ ] Switch between real and sample modes. Old messages clear; samples carry the SAMPLE label. Switching back uses only loaded real comments.
-- [ ] Navigate between two videos without refreshing. Comments from the first video do not carry over. Load the second video's comments and verify its flow appears.
-- [ ] Navigate home, to search, or to Shorts; no overlay remains. Use Back/Forward and return to a watch video; only one overlay attaches.
-- [ ] Click directly through an overlay message. Player clicks, seeking, volume, captions, settings menus, keyboard shortcuts, and fullscreen still work.
-- [ ] Resize the window and switch theater/fullscreen. Three lanes stay near the player top with no duplicates. In fullscreen, use previously saved settings if Chrome's toolbar is unavailable.
-- [ ] Test a video with disabled comments: real mode shows no flow; demo mode still works.
-- [ ] Check the extension's Errors panel at `chrome://extensions` and the watch page's DevTools console for extension errors.
-
 After editing files, reload the extension at `chrome://extensions` and refresh YouTube tabs. To uninstall, click **Remove** on its extension card.
 
 ## Files and verification
@@ -69,6 +51,6 @@ After editing files, reload the extension at `chrome://extensions` and refresh Y
 - `popup.html`, `popup.css`, `popup.js`: controls, comment count, and the Go to comments button.
 - `tests/content.test.cjs`: dependency-free tests exercising the scripts with a mocked DOM and animation clock.
 
-Run `node --test tests/content.test.cjs` from this folder. Automated tests cover sample animation, pause/buffering/tab visibility, settings, navigation cleanup, real-comment loading, plain-text insertion, deduplication, and length limits. They do not validate YouTube's current live markup; complete the manual checks in Chrome too.
+Run `node --test tests/content.test.cjs` from this folder. Automated tests cover sample animation, pause/buffering/tab visibility, settings, navigation cleanup, real-comment loading, plain-text insertion, deduplication, and length limits. They do not validate YouTube's current live markup.
 
 Chrome references: [load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked), [content scripts](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts), [local storage](https://developer.chrome.com/docs/extensions/reference/api/storage).
