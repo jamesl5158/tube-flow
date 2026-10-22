@@ -6,7 +6,7 @@ TubeFlow is a free Chrome extension for desktop YouTube. It shows comments from 
 
 ## Install
 
-1. On [this project's GitHub page](https://github.com/jamesl5158/youtube-sample-comments), click **Code → Download ZIP**.
+1. On [this project's GitHub page](https://github.com/jamesl5158/tube-flow), click **Code → Download ZIP**.
 2. Extract the ZIP and keep the folder on your computer.
 3. Open Chrome and go to `chrome://extensions`.
 4. Turn on **Developer mode** in the top-right corner.
