@@ -1,11 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "YouTube Comment Flow",
+  "name": "TubeFlow — Comments for YouTube",
   "version": "1.1.0",
-  "description": "Flow comments already loaded on YouTube across the video. No API key required.",
+  "description": "Watch YouTube and read comments at the same time, with Bilibili-style scrolling comments across the video.",
   "permissions": ["storage"],
   "action": {
-    "default_title": "YouTube comment controls",
+    "default_title": "TubeFlow controls",
     "default_popup": "popup.html"
   },
   "content_scripts": [{
