@@ -1,56 +1,85 @@
-# YouTube Comment Flow
+# TubeFlow
 
-A shareable, local Chrome Manifest V3 extension written in plain JavaScript, HTML, and CSS. Real comments already loaded on a YouTube watch page move right to left in three lanes across the top of its player. Everyone who downloads this project can use the same method: **no API key, server, extra account, or package installation is required.**
+**Bilibili-style scrolling comments for YouTube.** Watch a video and read comments at the same time, without scrolling away from the player.
 
-## Install on your computer
+TubeFlow is a free Chrome extension for desktop YouTube. It shows comments from the video's comment section moving across the video. No extra account, API key, or software installation is needed beyond Chrome.
 
-1. Download the project ZIP and extract it into a permanent folder, or download/clone the project source.
-2. Open desktop Google Chrome and visit `chrome://extensions`.
-3. Turn on **Developer mode** in the upper-right corner.
-4. Click **Load unpacked** and select the extracted folder containing `manifest.json`. If your download has nested folders, open them until you find that file. Select the folder, not the ZIP or the JSON file.
-5. Open Chrome's Extensions menu (puzzle-piece icon) and pin **YouTube Comment Flow**.
-6. Open or refresh a YouTube watch-page video. Refresh existing YouTube tabs after installing or reloading the extension.
+## Install
 
-These instructions use the downloaded folder on each person's own computer; no path or credentials from the original developer are needed. Keep the folder in place while the extension is installed. Managed computers may restrict developer mode. This project is distributed as an unpacked extension, not a Chrome Web Store installation.
+1. On [this project's GitHub page](https://github.com/jamesl5158/youtube-sample-comments), click **Code → Download ZIP**.
+2. Extract the ZIP and keep the folder on your computer.
+3. Open Chrome and go to `chrome://extensions`.
+4. Turn on **Developer mode** in the top-right corner.
+5. Click **Load unpacked** and select the folder containing `manifest.json`.
+6. Open Chrome's Extensions menu (the puzzle-piece icon) and pin **TubeFlow**.
+7. Open a YouTube video, or refresh any YouTube tabs already open.
 
-If you already installed the earlier sample version, click **Reload** on its card at `chrome://extensions`, refresh your YouTube tabs, and select **Real comments loaded on this page** in the popup. The existing speed, opacity, and on/off preferences are preserved.
+Select the extracted folder, not the ZIP file. TubeFlow is installed from this folder, not the Chrome Web Store.
 
-## Use real comments
+## Use it
 
-1. Open a normal YouTube watch page and scroll down until its comment text appears. You can also open the extension popup and click **Go to comments**.
-2. Wait for YouTube to load comments, then scroll back to the video and start playback.
-3. Open the popup to see how many real comments are ready. Scroll farther into the comments section to load more; the extension automatically notices them.
-4. Adjust **Show comments**, **Speed** (40–240 pixels per second), and **Opacity** (20–100%). Settings persist locally and apply to open YouTube tabs.
+1. Open a YouTube video and scroll down until the comments load. You can also click **Go to comments** in TubeFlow.
+2. Scroll back to the video and press play. Comments will move across the top of the video.
+3. Click the TubeFlow icon to turn comments on or off, change their speed, or adjust their opacity (how see-through they are).
 
-Real-comment mode never substitutes fictional comments when none are available. If comments are disabled, unavailable, or not loaded, no comment flow appears. Select **Sample comments (demo)** to test the overlay independently; every fictional comment starts with `SAMPLE ·`.
+Scroll farther down the comment section to load more comments. To try the effect without loading real comments, choose **Sample comments (demo)** in the popup.
 
-Flow freezes when playback pauses, ends, buffers, or the tab is hidden. Turning it off hides it and stops animation; turning it back on resumes when the video plays. The overlay passes all pointer events through to YouTube. Controls are in the toolbar popup, outside the player. Theater and fullscreen modes use the same overlay. It does not appear in Chrome's separate Picture-in-Picture window.
+Comments pause with the video. You can still click the player controls, and the flow works in theater and fullscreen modes. Your settings are saved and apply to all open YouTube tabs.
 
-## What this method can do
+## What to expect
 
-The extension reads rendered top-level comment text from the current watch page. It does not fetch comments itself, automatically scroll, expand replies, log in, like, post, use private YouTube endpoints, or call an API. Reading loaded comments is DOM scraping. Comment text stays in the current tab's memory and is not saved or sent anywhere; only control settings are stored locally.
+- **Comments are not synced to video timestamps.** Unlike Bilibili's timed comments, TubeFlow repeats comments from the YouTube comment section in order.
+- You need to load the comment section for each video. TubeFlow does not download comments for you.
+- It uses up to 200 loaded comments, skips duplicate text, and shortens long comments. Authors and replies are not shown.
+- Videos with comments turned off have no real comments to display. Demo comments are clearly marked `SAMPLE`.
+- It works on regular video pages, not Shorts or Chrome's separate picture-in-picture window. Comments may also appear during ads.
 
-It reads up to 200 rendered top-level comments, removes duplicate text, and limits each overlay message to 160 Unicode characters. It repeats available comments in sequence, without authors or replies. Comments are not tied to playback timestamps. Switching videos clears the old comment flow.
+## No comments showing?
 
-YouTube loads comments lazily, so users must load the section at least once per video. This cannot guarantee access to every comment. YouTube's markup can change; the selectors in `comments.js` may need updating. Videos with disabled comments have no real comments to display. Ads use the same player, so flow may also appear during ads.
+- Refresh the YouTube tab after installing or reloading TubeFlow.
+- Check that **Show comments** is on and **Real comments loaded on this page** is selected.
+- Scroll down until YouTube's comments appear, then return to the video and press play.
+- Try **Sample comments (demo)** to check whether the scrolling effect works.
 
-The extension requests only the `storage` API permission. Content scripts are limited to `https://www.youtube.com/*` to support navigation from home/search into watch pages. The overlay attaches only to `/watch` pages with a video ID. No background service worker or build step is required.
+YouTube changes its website from time to time, which can stop comment loading from working.
 
-## Share the project
+## Privacy
 
-Share the ZIP or the complete source folder. Each recipient extracts it and follows the installation steps above. Do not include personal Chrome profile data; it is not needed. Publishing to the Chrome Web Store is a separate future distribution step.
+Comments stay in the current tab and are not saved or sent anywhere by TubeFlow. Only your settings are saved locally. The extension runs on YouTube and does not post, like, or change comments.
 
-After editing files, reload the extension at `chrome://extensions` and refresh YouTube tabs. To uninstall, click **Remove** on its extension card.
+## Update or remove
 
-## Files and verification
+After changing or downloading updated files, click **Reload** on TubeFlow's card at `chrome://extensions`, then refresh your YouTube tabs. Keep using the same folder to update your installation.
 
-- `manifest.json`: MV3 declaration and YouTube-only injection.
-- `settings.js`: shared defaults, source selection, and bounded values.
-- `comments.js`: rendered comment selectors, normalization, deduplication, and length limits.
-- `content.js`: overlay animation, comment queue, playback/navigation lifecycle, and popup messages.
-- `popup.html`, `popup.css`, `popup.js`: controls, comment count, and the Go to comments button.
-- `tests/content.test.cjs`: dependency-free tests exercising the scripts with a mocked DOM and animation clock.
+To uninstall, click **Remove** on its extension card.
 
-Run `node --test tests/content.test.cjs` from this folder. Automated tests cover sample animation, pause/buffering/tab visibility, settings, navigation cleanup, real-comment loading, plain-text insertion, deduplication, and length limits. They do not validate YouTube's current live markup.
+## For contributors
 
-Chrome references: [load an unpacked extension](https://developer.chrome.com/docs/extensions/get-started/tutorial/hello-world#load-unpacked), [content scripts](https://developer.chrome.com/docs/extensions/develop/concepts/content-scripts), [local storage](https://developer.chrome.com/docs/extensions/reference/api/storage).
+No build step or package installation is needed. Edit the files, reload the extension, and refresh YouTube to try your changes.
+
+- `manifest.json`: extension name, permissions, and files to load.
+- `comments.js`: reads comments from the page.
+- `content.js`: shows and animates comments over the video.
+- `settings.js`: default settings and allowed values.
+- `popup.html`, `popup.css`, `popup.js`: popup controls.
+
+With Node.js installed, run the tests from the project folder:
+
+```sh
+node --test tests/content.test.cjs
+```
+
+The tests check comment handling, animation, settings, and switching videos. They do not check YouTube's live website; test that manually in Chrome.
+
+### Commit messages
+
+Use `type: short description`, with a clear description of what changed:
+
+- `feat: add comment size control`
+- `fix: clear comments when switching videos`
+- `docs: simplify installation steps`
+- `test: cover videos with comments disabled`
+- `refactor: simplify comment loading`
+- `chore: update extension metadata`
+
+Use `feat:` for new features rather than `add:`. Keep unrelated changes in separate commits.
